@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - INEI UPC ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <!-- Bootstrap -->
+    <link href="@Url.Content("~/Content/css/bootstrap.css")" rel="stylesheet" media="screen">
+    <link href="@Url.Content("~/Content/css/thin-admin.css")" rel="stylesheet" media="screen">
+    <link href="@Url.Content("~/Content/css/font-awesome.css")" rel="stylesheet" media="screen">
+    <link href="@Url.Content("~/Content/style/style.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/style/dashboard.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/css/demo_page.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/css/demo_table.css")" rel="stylesheet">
+</head>
+<body>
+    <!--Encabezadoooo-->
+      <div class="container">
+
+        <div class="top-navbar header">
+            <a data-original-title="Toggle navigation" class="toggle-side-nav col-sm-pull-8" href="#"><i class="icon-reorder"></i> </a>
+            <div class="brand pull-right"><img src="~/Content/images/logo_upc.png" width="50" height="50" /></div>
+            @Html.ActionLink("INEI UPC", "Principal", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <ul class="nav navbar-nav navbar-right  hidden-xs">
+
+                <li class="dropdown user  hidden-xs">
+                    
+                    <ul class="nav navbar-nav">
+                        
+                        <li class="divider"></li>
+                        <li>@Html.ActionLink("Inicio", "Principal", "Home")</li>
+                        <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Cerrar Sesion", "CerrarSesion", "Login")</li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <!--fin de encabezadooo-->
+
+    <div class="wrapper">
+        <!-- Barra latera -->
+        <div class="left-nav">
+            <div id="side-nav">
+                <ul id="nav">
+                    <li> <a href="@Url.Action("Principal", "Home",new { IdEmpl="#"})"> <i class="icon-dashboard"></i> INICIO </a> </li>
+                    <li>
+                        <a> <i class="icon-edit"></i> PERSONAS  <i class="arrow icon-angle-left"></i></a>
+                        <ul class="sub-menu">
+                            <li>@Html.ActionLink("Lista de Personas registradas", "ListPersNatural", "Persona") </li>
+                            <li>@Html.ActionLink("Registrar Excel de personas", "RegistrarMasivo", "Persona") </li>
+                         </ul>                       
+                    </li>
+
+                    <li>
+                        <a> <i class="icon-edit"></i> ENCUESTAS  <i class="arrow icon-angle-left"></i></a>
+                        <ul class="sub-menu">
+                            <li>@Html.ActionLink("Registrar encuesta", "RegistroEncuesta", "Encuesta")</li>
+                            <li>@Html.ActionLink("Listar encuestas", "ListEncuestas", "Encuesta")</li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a> <i class="icon-edit"></i> PREGUNTAS  <i class="arrow icon-angle-left"></i></a>
+                        <ul class="sub-menu">
+                            <li>@Html.ActionLink("Registrar pregunta", "RegistroPregunta", "Pregunta")</li>
+                            <li>@Html.ActionLink("Listar preguntas", "ListPreguntas", "Pregunta")</li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a> <i class="icon-edit"></i> OPCIONES  <i class="arrow icon-angle-left"></i></a>
+                        <ul class="sub-menu">
+                            <li>@Html.ActionLink("Registrar opcion", "RegistroOpcion", "Opcion")</li>
+                            <li>@Html.ActionLink("Listar opciones", "ListOpciones", "Opcion")</li>
+                        </ul>
+                    </li>
+                    
+
+                </ul>
+            </div>
+        </div>
+        <!-- Fin barra Lateral-->
+        <div class="page-content">
+            <div class="content container">
+                <!-- COntenido aqui -->
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+<!--fin barra lateralll-->
+        
+
+
+        <script src="@Url.Content("~/Content/js/bootstrap-datepicker.js")"></script>
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="@Url.Content("~/Content/js/jquery.js")"></script>
+        <script src="@Url.Content("~/Content/js/bootstrap.min.js")"></script>
+        <script type="text/javascript" )" src="@Url.Content("~/Content/js/smooth-sliding-menu.js")"></script>
+
+        <script type="text/javascript" language="javascript" src="@Url.Content("~/Content/js/jquery.js")"></script>
+        <script type="text/javascript" language="javascript" src="@Url.Content("~/Content/js/jquery.dataTables.js")"></script>
+        <script type="text/javascript" charset="utf-8">
+            $(document).ready(function () {
+                $('#example').dataTable({
+                    "sPaginationType": "full_numbers"
+                });
+            });
+        </script>
+
+        <!--switcher html start-->
+        <div class="demo_changer active" style="right: 0px;">
+            <div class="demo-icon"></div>
+            <div class="form_holder">
+
+                <div class="predefined_styles">
+                    <a class="styleswitch" rel="a" href=""><img alt="" src="@Url.Content("~/Content/images/a.jpg")"></a>
+                    <a class="styleswitch" rel="b" href=""><img alt="" src="@Url.Content("~/Content/images/b.jpg")"></a>
+                    <a class="styleswitch" rel="c" href=""><img alt="" src="@Url.Content("~/Content/images/c.jpg")"></a>
+                    <a class="styleswitch" rel="d" href=""><img alt="" src="@Url.Content("~/Content/images/d.jpg")"></a>
+                    <a class="styleswitch" rel="e" href=""><img alt="" src="@Url.Content("~/Content/images/e.jpg")"></a>
+                    <a class="styleswitch" rel="f" href=""><img alt="" src="@Url.Content("~/Content/images/f.jpg")"></a>
+                    <a class="styleswitch" rel="g" href=""><img alt="" src="@Url.Content("~/Content/images/g.jpg")"></a>
+                    <a class="styleswitch" rel="h" href=""><img alt="" src="@Url.Content("~/Content/images/h.jpg")"></a>
+                    <a class="styleswitch" rel="i" href=""><img alt="" src="@Url.Content("~/Content/images/i.jpg")"></a>
+                    <a class="styleswitch" rel="j" href=""><img alt="" src="@Url.Content("~/Content/images/j.jpg")"></a>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!--switcher html end-->
+        <script src="@Url.Content("~/Content/assets/switcher/switcher.js")"></script>
+        <script src="@Url.Content("~/Content/assets/switcher/moderziner.custom.js")"></script>
+        <link href="@Url.Content("~/Content/assets/switcher/switcher.css")" rel="stylesheet">
+        <link href="@Url.Content("~/Content/assets/switcher/switcher-defult.css")" rel="stylesheet">
+        <link rel="alternate stylesheet" type="text/css" href="@Url.Content("~/Content/assets/switcher/a.css")" title="a" media="all" />
+        <link rel="alternate stylesheet" type="text/css" href="@Url.Content("~/Content/assets/switcher/b.css")" title="b" media="all" />
+        <link rel="alternate stylesheet" type="text/css" href="@Url.Content("~/Content/assets/switcher/c.css")" title="c" media="all" />
+        <link rel="alternate stylesheet" type="text/css" href="@Url.Content("~/Content/assets/switcher/d.css")" title="d" media="all" />
+        <link rel="alternate stylesheet" type="text/css" href="@Url.Content("~/Content/assets/switcher/e.css")" title="e" media="all" />
+        <link rel="alternate stylesheet" type="text/css" href="@Url.Content("~/Content/assets/switcher/f.css")" title="f" media="all" />
+        <link rel="alternate stylesheet" type="text/css" href="@Url.Content("~/Content/assets/switcher/g.css")" title="g" media="all" />
+        <link rel="alternate stylesheet" type="text/css" href="@Url.Content("~/Content/assets/switcher/h.css")" title="h" media="all" />
+        <link rel="alternate stylesheet" type="text/css" href="@Url.Content("~/Content/assets/switcher/i.css")" title="i" media="all" />
+        <link rel="alternate stylesheet" type="text/css" href="@Url.Content("~/Content/assets/switcher/j.css")" title="j" media="all" />
+
+
+    <!--Pieeeeee-->
+    <div class="container body-content">
+
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - INEI UPC ASP.NET</p>
+        </footer>
+    </div>
+</body>
+</html>
+
+<script>
+    window.onload = function () {
+    $('.datepicker').datepicker(); //Initialise any date pickers
+    }
+</script>
+

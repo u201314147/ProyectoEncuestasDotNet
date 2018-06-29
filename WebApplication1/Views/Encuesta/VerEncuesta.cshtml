@@ -1,0 +1,79 @@
+﻿@model Inei.ViewModel.AddEditRespEncuestaOpcionViewModel
+@{
+    ViewBag.Title = "Resuestas de Encuesta";
+
+
+    int idPersona = 0;
+    try
+    {
+        idPersona = WebApplication1.Security.SessionPersister.persona.PersonaNaturalId;
+    }
+    catch
+    {
+        <h3 width="147" height="33"> No esta logueado, haga click aqui para ingresar: </h3>
+        <li>@Html.ActionLink("Ingresar", "Login", "Home")</li>
+        return;
+    }
+
+
+
+
+    var opciones = (List<WebApplication1.Models.RespuestaEncuestaOpcion>)ViewData["LstaResps"];
+
+   
+
+
+}
+<div>
+
+    @if (opciones == null) { return; }
+
+    <h3>Detalles de la encuesta:</h3>
+   
+
+    <table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
+        <thead>
+            <tr>
+                 <th>Tu Nombre</th>
+                <th>Encuesta</th>
+                <th>Fecha</th>
+
+                <th>Tu Opcion</th>
+                <th>Tu respuesta</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var listar in opciones)
+            {
+                <tr class="gradeX">
+
+                    <td>@listar.RespuestaEncuesta.PersonaNatural.Nombre</td>
+                    <td>@listar.RespuestaEncuesta.Encuesta.Nombre</td>
+                    <td>@listar.RespuestaEncuesta.FechaEncuesta</td>
+                    <td>@listar.EncuestaOpcion.Texto</td>
+                    <td>@listar.Valor</td>
+
+                
+                  
+                </tr>
+            }
+
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <th> </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+
+</div>
+

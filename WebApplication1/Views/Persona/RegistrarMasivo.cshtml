@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "ListPersNatural";
+    List<WebApplication1.Models.PersonaNatural> ListPersNatural = (List<WebApplication1.Models.PersonaNatural>)ViewData["ListPersNatural"];
+}
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-warning fade in">
+        <button type="button" class="close close-sm" data-dismiss="alert"> <i class="icon-remove"></i> </button>
+        <strong>Advertencia!</strong> @TempData["Mensaje"].ToString()
+    </div>
+}
+
+<h3>Plantilla excel</h3>
+<label>Descargar plantilla excel para registrar personas: </label> 
+<a class="btn btn-default waves-effect waves-light" href="@Url.Content("~/Content/Files/sth-plantilla-carga-masiva.xlsx")">
+   <i class="fa fa-download"></i> Descargar Plantilla</a>
+
+<h3>Subir archivo excel</h3>
+<label>Cargar data de excel para registrar personas </label>
+@using (Html.BeginForm("AddPersonaMasivo", "Persona", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+                   <input type="file" name="Archivo" />
+                    <button class="btn btn-primary waves-effect waves-light" type="submit"><i class="fa fa-upload"></i> Cargar</button>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

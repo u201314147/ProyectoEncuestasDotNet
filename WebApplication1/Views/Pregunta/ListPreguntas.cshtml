@@ -1,0 +1,113 @@
+﻿@model Inei.ViewModel.AddEditEncuestaPreguntaViewModel
+@{
+    ViewBag.Title = "ListPreguntas";
+    //List<WebApplication1.Models.EncuestaPregunta> listaPreguntas = (List<WebApplication1.Models.EncuestaPregunta>)ViewData["ListPreguntas"];
+}
+@if (TempData["Mensaje"] != null)
+{
+
+    <div class="alert alert-warning fade in">
+        <button type="button" class="close close-sm" data-dismiss="alert"> <i class="icon-remove"></i> </button>
+        <strong>Mensaje:</strong> @TempData["Mensaje"].ToString()
+    </div>
+
+}
+<div class="wrapper">
+    <div class="page-content">
+        <div class="content container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="page-title">LISTA DE PREGUNTAS <small> Listar</small></h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="widget">
+                        <div class="widget-header">
+                            <i class="icon-table"></i>
+                            <h3>Preguntas registradas</h3>
+                        </div>
+                        <div class="widget-content">
+
+                            <div class="example_alt_pagination">
+                                <div id="container">
+                                    <div class="full_width big"></div>
+                                    <div id="demo">
+                                        @if (Model.LstPreguntas.Count() != 0)
+                                        {
+                                            <table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Encuesta</th>
+                                                        <th>Pregunta</th>
+                                                        <th>Tipo</th>
+                                                        <th>Orden</th>
+
+                                                        <th>Estado</th>
+                                                        <th>Fecha de Registro</th>
+
+                                                        <th>Usuario</th>
+                                                        <th>Opciones</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    @foreach (var listar in Model.LstPreguntas)
+                                                    {
+                                                        <tr class="gradeX">
+                                                            <td>@listar.Encuesta.Nombre</td>
+                                                            <td>@listar.Texto</td>
+                                                            <td>@listar.Tipo</td>
+                                                            
+                                                            <td>@listar.Orden</td>
+
+                                                            <td>@listar.Estado</td>
+                                                            <td>@listar.FechaRegistro</td>
+
+                                                            <td>@listar.UsuarioRegistroId</td>
+                                                         
+                                                            <td class="hidden-xs">
+                                                                <a class="btn btn-sm btn-primary" href="@Url.Action("RegistroPregunta", new { preguntaId= listar.EncuestaPreguntaId})">Editar</a>
+                                                                <a class="btn btn-sm btn-primary" href="@Url.Action("EliminarPregunta", new { preguntaId= listar.EncuestaPreguntaId})">Eliminar</a>
+
+                                                            </td>
+                                                        </tr>
+                                                    }
+
+
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th> </th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        }
+                                        else
+                                        {
+                                            <h4> Ningun Dato encontrado </h4>
+
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

@@ -1,0 +1,103 @@
+﻿@model Inei.ViewModel.AddEditEncuestaPreguntaViewModel
+@{
+    ViewBag.Title = "Registrar preguntas";
+    List<WebApplication1.Models.Encuesta> listaEncuestas = (List<WebApplication1.Models.Encuesta>)ViewData["ListEncuestas"];
+
+    var mySelectItems = new List<SelectListItem>();
+    foreach(var enc in listaEncuestas)
+    {
+        var select1 = new SelectListItem();
+        select1.Text = enc.Nombre;
+        select1.Value = enc.EncuestaId.ToString();
+
+        mySelectItems.Add(select1);
+    }
+
+
+    var mySelectItems2 = new List<SelectListItem>();
+
+    var select = new SelectListItem();
+    select.Text = "[TXT] Respuesta en texto";
+    select.Value = "TXT";
+    mySelectItems2.Add(select);
+
+    var select2 = new SelectListItem();
+    select2.Text = "[NUM] Respuesta numerica";
+    select2.Value = "NUM";
+    mySelectItems2.Add(select2);
+
+    var select3 = new SelectListItem();
+    select3.Text = "[OPS] Selecionar una opcion";
+    select3.Value = "OPS";
+    mySelectItems2.Add(select3);
+
+    var select4 = new SelectListItem();
+    select4.Text = "[OPM] Selecionar varias opciones";
+    select4.Value = "OPM";
+    mySelectItems2.Add(select4);
+
+    var select5 = new SelectListItem();
+    select5.Text = "[CHK] Marcar o desmarca";
+    select5.Value = "CHK";
+    mySelectItems2.Add(select5);
+
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Ingresa los datos para registrar preguntas para una encuesta</p>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+
+                <form  method="post" action="@Url.Action("RegistroPregunta")">
+                    @Html.HiddenFor(x => x.EncuestaPreguntaId)
+                    <div class="form-group">
+                        <label for="campo01">Nombre de la encuesta</label>
+                        @Html.DropDownListFor(x=>x.EncuestaId, mySelectItems)
+                    </div>
+                    
+
+
+                    <div class="form-group">
+                        <label for="campo01">Enunciado de la pregunta</label>
+                        @Html.TextBoxFor(x => x.Texto, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Texto)
+                    </div>
+
+                
+                    <div class="form-group">
+                        <label for="campo01">Tipo</label>
+                        @Html.DropDownListFor(x => x.Tipo, mySelectItems2)
+                        @Html.ValidationMessageFor(x =>x.Tipo)
+                    </div>
+
+                    <div class="form-group">
+                        <label for="campo01">Orden</label>
+                        @Html.TextBoxFor(x => x.Orden, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Orden)
+                    </div>
+
+                    <div class="form-group">
+                        <label for="campo01">Estado</label>
+                        @Html.TextBoxFor(x => x.Estado, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Estado)
+                        </div>
+
+                        <button type="submit" class="btn btn-default">Registrar Pregunta</button>
+</form>
+
+
+     
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src=js/jquery-3.2.1.min.js"><\/script>')</script>
+    <script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+﻿@model Inei.ViewModel.AddEditEncuestaOpcionViewModel
+@{
+    ViewBag.Title = "Registrar opciones";
+    List<WebApplication1.Models.EncuestaPregunta> preguntas = (List<WebApplication1.Models.EncuestaPregunta>)ViewData["ListPreguntas"];
+
+    var mySelectItems = new List<SelectListItem>();
+    foreach(var enc in preguntas)
+    {
+        var select = new SelectListItem();
+        select.Text = enc.Texto + " Tipo: " + enc.Tipo;
+        select.Value = enc.EncuestaPreguntaId.ToString();
+            mySelectItems.Add(select);
+
+    }
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Ingresa los datos para registrar opciones para una encuesta</p>
+
+<body>
+
+
+                <form  method="post" action="@Url.Action("RegistroOpcion")">
+                    @Html.HiddenFor(x => x.EncuestaOpcionId)
+                    <div class="form-group">
+
+                        <label for="campo01">Texto de la pregunta</label>
+                        @Html.DropDownListFor(x => x.EncuestaPreguntaId, mySelectItems)
+
+                    </div>
+
+                    
+                    <div class="form-group">
+                        <label for="campo01">Texto de la opcion</label>
+                        @Html.TextBoxFor(x => x.Texto, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Texto)
+                    </div>
+
+                
+                  <div class="form-group">
+                        <label for="campo01">Orden</label>
+                        @Html.TextBoxFor(x => x.Orden, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Orden)
+                    </div>
+
+                    <div class="form-group">
+                        <label for="campo01">Estado</label>
+                        @Html.TextBoxFor(x => x.Estado, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Estado)
+                        </div>
+
+                        <button type="submit" class="btn btn-default">Registrar Opcion</button>
+</form>
+
+
+     
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src=js/jquery-3.2.1.min.js"><\/script>')</script>
+    <script src="/js/bootstrap.min.js"></script>
+</body>

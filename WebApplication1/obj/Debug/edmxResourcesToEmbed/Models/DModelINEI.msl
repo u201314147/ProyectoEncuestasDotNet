@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="INEITFModelStoreContainer" CdmEntityContainer="INEIEntities">
+    <EntitySetMapping Name="Encuesta">
+      <EntityTypeMapping TypeName="INEI.TFModel.Encuesta">
+        <MappingFragment StoreEntitySet="Encuesta">
+          <ScalarProperty Name="EncuestaId" ColumnName="EncuestaId" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="FechaTentativaAplicacion" ColumnName="FechaTentativaAplicacion" />
+          <ScalarProperty Name="CostoEstimado" ColumnName="CostoEstimado" />
+          <ScalarProperty Name="EsAlcanceNacional" ColumnName="EsAlcanceNacional" />
+          <ScalarProperty Name="NroEncuestasAplicadas" ColumnName="NroEncuestasAplicadas" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="UsuarioRegistroId" ColumnName="UsuarioRegistroId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EncuestaOpcion">
+      <EntityTypeMapping TypeName="INEI.TFModel.EncuestaOpcion">
+        <MappingFragment StoreEntitySet="EncuestaOpcion">
+          <ScalarProperty Name="EncuestaOpcionId" ColumnName="EncuestaOpcionId" />
+          <ScalarProperty Name="EncuestaPreguntaId" ColumnName="EncuestaPreguntaId" />
+          <ScalarProperty Name="Texto" ColumnName="Texto" />
+          <ScalarProperty Name="Orden" ColumnName="Orden" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="UsuarioRegistroId" ColumnName="UsuarioRegistroId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EncuestaPregunta">
+      <EntityTypeMapping TypeName="INEI.TFModel.EncuestaPregunta">
+        <MappingFragment StoreEntitySet="EncuestaPregunta">
+          <ScalarProperty Name="EncuestaPreguntaId" ColumnName="EncuestaPreguntaId" />
+          <ScalarProperty Name="EncuestaId" ColumnName="EncuestaId" />
+          <ScalarProperty Name="Texto" ColumnName="Texto" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Orden" ColumnName="Orden" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="UsuarioRegistroId" ColumnName="UsuarioRegistroId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonaNatural">
+      <EntityTypeMapping TypeName="INEI.TFModel.PersonaNatural">
+        <MappingFragment StoreEntitySet="PersonaNatural">
+          <ScalarProperty Name="PersonaNaturalId" ColumnName="PersonaNaturalId" />
+          <ScalarProperty Name="DNI" ColumnName="DNI" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+          <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="UsuarioRegistroId" ColumnName="UsuarioRegistroId" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RespuestaEncuesta">
+      <EntityTypeMapping TypeName="INEI.TFModel.RespuestaEncuesta">
+        <MappingFragment StoreEntitySet="RespuestaEncuesta">
+          <ScalarProperty Name="RespuestaEncuestaId" ColumnName="RespuestaEncuestaId" />
+          <ScalarProperty Name="PersonaNaturalId" ColumnName="PersonaNaturalId" />
+          <ScalarProperty Name="EncuestaId" ColumnName="EncuestaId" />
+          <ScalarProperty Name="FechaEncuesta" ColumnName="FechaEncuesta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RespuestaEncuestaOpcion">
+      <EntityTypeMapping TypeName="INEI.TFModel.RespuestaEncuestaOpcion">
+        <MappingFragment StoreEntitySet="RespuestaEncuestaOpcion">
+          <ScalarProperty Name="RespuestaEncuestaOpcionId" ColumnName="RespuestaEncuestaOpcionId" />
+          <ScalarProperty Name="RespuestaEncuestaId" ColumnName="RespuestaEncuestaId" />
+          <ScalarProperty Name="EncuestaOpcionId" ColumnName="EncuestaOpcionId" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="INEI.TFModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Rol" ColumnName="Rol" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,53 @@
+﻿
+@model Inei.ViewModel.AddEditEncuestaViewModel
+@{
+    ViewBag.Title = "Registrar encuesta";
+    
+}
+
+<div>
+
+
+    <h2>@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>
+
+    <p>Ingresa los datos para registrar encuesta</p>
+    <form role="form" method="post" action="@Url.Action("RegistroEncuesta")">
+        @Html.HiddenFor(x => x.EncuestaId)
+        <div class="form-group">
+            <label for="campo01">Nombre de la encuesta</label>
+            @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(x => x.Nombre)
+        </div>
+
+        <div class="form-group">
+            <label for="campo01">Descripcion</label>
+            @Html.TextBoxFor(x => x.Descripcion, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Descripcion)
+        </div>
+
+
+        <div class="form-group">
+            <label for="campo01">Fecha tentativa</label>
+            @Html.EditorFor(x => x.FechaTentativaAplicacion, new { @class = "form-control datepicker" })
+            @Html.ValidationMessageFor(x => x.FechaTentativaAplicacion)
+        </div>
+     
+        <div class="form-group">
+            <label for="campo01">Costo estimado</label>
+            @Html.TextBoxFor(x => x.CostoEstimado, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.CostoEstimado)
+        </div>
+
+        <div class="form-group">
+            <label for="campo01">Tiene alcance nacional</label>
+            @Html.CheckBoxFor(x => x.EsAlcanceNacional, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.EsAlcanceNacional)
+        </div>
+
+        <button type="submit" class="btn btn-default">Guardar Encuesta</button>
+    </form>
+
+</div>
+

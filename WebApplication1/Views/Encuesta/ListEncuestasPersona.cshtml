@@ -1,0 +1,147 @@
+﻿@model Inei.ViewModel.AddEditEncuestaViewModel
+
+@{
+    Layout = null;
+
+
+    int idPersona = 0;
+    try
+    {
+        idPersona = WebApplication1.Security.SessionPersister.persona.PersonaNaturalId;
+    }
+    catch
+    {
+        <h3 width="147" height="33"> No esta logueado, haga click aqui para ingresar: </h3>
+        <li>@Html.ActionLink("Ingresar", "Login", "Home")</li>
+        return;
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UPC INEI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="@Url.Content("~/Content/css/bootstrap.css")" rel="stylesheet" media="screen">
+    <link href="@Url.Content("~/Content/css/thin-admin.css")" rel="stylesheet" media="screen">
+    <link href="@Url.Content("~/Content/css/font-awesome.css")" rel="stylesheet" media="screen">
+    <link href="@Url.Content("~/Content/style/style.css")" rel="stylesheet">
+
+</head>
+<body>
+    <div class="login-logo">
+        <h3 width="147" height="33"> UPC INEI</h3>
+    </div>
+    
+
+    @if (TempData["Mensaje"] != null)
+    {
+
+        <div class="alert alert-warning fade in">
+            <button type="button" class="close close-sm" data-dismiss="alert"> <i class="icon-remove"></i> </button>
+            <strong>Mensaje:</strong> @TempData["Mensaje"].ToString()
+        </div>
+
+    }
+    <span class="label label-primary">Bienvenido @WebApplication1.Security.SessionPersister.persona.Nombre @WebApplication1.Security.SessionPersister.persona.ApellidoPaterno @WebApplication1.Security.SessionPersister.persona.ApellidoMaterno </span>
+    
+    <div class="wrapper">
+        <div class="page-content">
+            <div class="content container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="page-title">LISTA DE ENCUESTAS <small> Listar</small></h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="widget">
+                            <div class="widget-header">
+                                <i class="icon-table"></i>
+                                <h3>Encuestas registradas</h3>
+                            </div>
+                            <div class="widget-content">
+
+                                <div class="example_alt_pagination">
+                                    <div id="container">
+                                        <div class="full_width big"></div>
+                                        <div id="demo">
+
+                                            <a class="btn btn-sm btn-primary" href="@Url.Action("ListRespuestaEncuestasPersonaTodas")">Listar todas mis respuestas</a>
+
+                                            @if (Model.LstEncuestas.Count() != 0)
+                                            {
+                                                <table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Nombre</th>
+                                                            <th>Descripcion</th>
+                                                            <th>Costo</th>
+
+                                                            <th>Estado</th>
+                                                           
+                                                            <th>Opciones</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        @foreach (var listar in Model.LstEncuestas)
+                                                        {
+                                                            <tr class="gradeX">
+                                                                <td>@listar.EncuestaId</td>
+                                                                <td>@listar.Nombre</td>
+                                                                <td>@listar.Descripcion</td>
+
+                                                                <td>@listar.CostoEstimado</td>
+
+                                                                <td>@listar.Estado</td>
+
+                                                               
+                                                                <td class="hidden-xs">
+
+                                                                    <a class="btn btn-sm btn-primary" href="@Url.Action("ResponderEncuesta", new { encuestaId= listar.EncuestaId})">Realizar Encuesta</a>
+                                                                    <a class="btn btn-sm btn-primary" href="@Url.Action("ListRespuestaEncuestasPersona", new { encuestaId= listar.EncuestaId})">Listar mis respuestas</a>
+
+                                                                </td>
+                                                            </tr>
+                                                        }
+
+
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th> </th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            }
+                                            else
+                                            {
+                                                <h4> Ningun Dato encontrado </h4>
+
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="@Url.Content("~/Content/js/jquery.js")"></script>
+    <script src="@Url.Content("~/Content/js/bootstrap.min.js")"></script>
+</body>
+</html>
+

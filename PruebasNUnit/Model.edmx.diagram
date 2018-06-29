@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ce86edf05cb34b1e9c666c67767bd9c1" Name="Diagram1">
+        <EntityTypeShape EntityType="INEI.TFModel.Encuesta" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INEI.TFModel.EncuestaOpcion" Width="1.5" PointX="7.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="INEI.TFModel.EncuestaPregunta" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INEI.TFModel.PersonaNatural" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="INEI.TFModel.RespuestaEncuesta" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="INEI.TFModel.RespuestaEncuestaOpcion" Width="1.5" PointX="9.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="INEI.TFModel.Usuario" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="INEI.TFModel.FK_Encuesta_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="INEI.TFModel.FK_EncuestaPregunta_Encuesta" ManuallyRouted="false" />
+        <AssociationConnector Association="INEI.TFModel.FK_RespuestaEncuesta_Encuesta" ManuallyRouted="false" />
+        <AssociationConnector Association="INEI.TFModel.FK_EncuestaOpcion_EncuestaPregunta" ManuallyRouted="false" />
+        <AssociationConnector Association="INEI.TFModel.FK_EncuestaOpcion_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="INEI.TFModel.FK_RespuestaEncuestaOpcion_EncuestaOpcion" ManuallyRouted="false" />
+        <AssociationConnector Association="INEI.TFModel.FK_EncuestaPregunta_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="INEI.TFModel.FK_PersonaNatural_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="INEI.TFModel.FK_RespuestaEncuesta_PersonaNatural" ManuallyRouted="false" />
+        <AssociationConnector Association="INEI.TFModel.FK_RespuestaEncuestaOpcion_RespuestaEncuesta" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

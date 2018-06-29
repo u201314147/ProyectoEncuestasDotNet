@@ -1,0 +1,108 @@
+﻿@model Inei.ViewModel.AddEditRespEncuestaOpcionViewModel
+@{
+    ViewBag.Title = "Responder Encuesta";
+
+
+    int idPersona = 0;
+    int idUsuario = 0;
+
+    try
+    {
+        idUsuario = WebApplication1.Security.SessionPersister.usuario.UsuarioId;
+    }
+    catch
+    {
+        try
+        {
+
+
+            idPersona = WebApplication1.Security.SessionPersister.persona.PersonaNaturalId;
+
+        }
+        catch
+        {
+            <h3 width="147" height="33"> No esta logueado, haga click aqui para ingresar: </h3>
+            <li>@Html.ActionLink("Ingresar", "Login", "Home")</li>
+            return;
+        }
+    }
+
+
+
+
+
+    var encuesta = (WebApplication1.Models.Encuesta)ViewData["encuesta"];
+    var preguntas = (List<WebApplication1.Models.EncuestaPregunta>)ViewData["preguntas"];
+    var opciones = (List<List<WebApplication1.Models.EncuestaOpcion>>)ViewData["opciones"];
+
+    var RespOpcionesFull = new List<WebApplication1.Models.EncuestaOpcion>(); //Guardar todas las respuestas
+
+    int numpreg = 1;
+
+
+}
+<div>
+
+    @if (encuesta == null) { return; }
+
+    <h3>Responder: @encuesta.Nombre</h3>
+    <form method="post" action="/Encuesta/ResponderEncuesta" class="form-horizontal">
+        <input type="hidden" name="EncuestaIdx" value="@encuesta.EncuestaId" />
+        <ul>Lista de preguntas:</ul>
+
+        @foreach (var pregunta in preguntas)
+        {
+            <ul>Pregunta @numpreg: @pregunta.Texto</ul>
+
+            foreach (var opcion in opciones)
+            {
+                foreach (var opc in opcion)
+                {
+                    if (opc.EncuestaPreguntaId == pregunta.EncuestaPreguntaId)
+                    {
+                        if (pregunta.Tipo == "TXT")
+                        {
+                            <ul>
+                                <input type="text" name="LstOpcionString">@opc.Texto
+                            </ul>
+                        }
+
+                        if (pregunta.Tipo == "NUM")
+                        {
+                            <ul>
+                                <input type="text" name="LstOpcionStringNum">@opc.Texto
+                            </ul>
+                        }
+
+                        if (pregunta.Tipo == "OPS")
+                        {
+                            <ul>
+                                <input type="radio" value="@opc.EncuestaOpcionId" name="LstOpcionesResp">@opc.Texto
+                            </ul>
+                        }
+
+                        if (pregunta.Tipo == "OPM")
+                        {
+                            <ul>
+                                <input type="checkbox" value="@opc.EncuestaOpcionId" name="LstOpcionesResp">@opc.Texto
+                            </ul>
+                        }
+
+                        if (pregunta.Tipo == "CHK")
+                        {
+                            <ul>
+                                <input type="checkbox" value="@opc.EncuestaOpcionId" name="LstOpcionesResp">@opc.Texto
+                            </ul>
+                        }
+                    }
+                }
+            }
+
+            numpreg++;
+
+
+        }
+        <input type="submit" />
+    </form>
+</div>
+
